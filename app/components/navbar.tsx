@@ -1,67 +1,105 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
+import { HiMenu, HiX } from "react-icons/hi";
+
+const navLinks = [
+  { label: "Home", href: "#home" },
+  { label: "Services", href: "#services" },
+  { label: "Skills", href: "#skills" },
+  { label: "Experience", href: "#experience" },
+  { label: "Contact", href: "#contact" },
+];
 
 const Navbar = () => {
-  return (
-    <div className="navbar bg-[#1c1c1c] shadow-sm">
-      <div className="container mx-auto navbar max-w-7xl">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {" "}
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />{" "}
-              </svg>
-            </div>
-            <ul
-              tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-            >
-              <li>
-                <a>Item 1</a>
-              </li>
+  const [menuOpen, setMenuOpen] = useState(false);
 
-              <li>
-                <a>Item 3</a>
-              </li>
-            </ul>
-          </div>
-          <a className="btn btn-ghost text-xl">Ramees M Siyad</a>
-        </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <a>Home</a>
+  return (
+    <nav
+      className="sticky top-0 z-50 w-full px-6 py-4"
+      style={{
+        backgroundColor: "#1e1e1e",
+        borderBottom: "1px solid #2a2a2a",
+      }}
+    >
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        {/* Logo / Name */}
+        <a
+          href="#home"
+          className="text-lg font-bold tracking-wide"
+          style={{ color: "#ffffff" }}
+        >
+          Ramees <span className="text-green-500">M Siyad</span>
+        </a>
+
+        {/* Desktop Nav Links */}
+        <ul className="hidden lg:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <li key={link.label}>
+              <a
+                href={link.href}
+                className="text-sm text-gray-400 transition-colors duration-300 hover:text-green-500"
+              >
+                {link.label}
+              </a>
             </li>
-            <li>
-              <a>Services</a>
-            </li>
-            <li>
-              <a>About</a>
-            </li>
-            <li>
-              <a>Projects</a>
-            </li>
-            <li>
-              <a>Contact Me</a>
-            </li>
-          </ul>
-        </div>
-        <div className="navbar-end">
-          <a className="btn btn-info">Hire Me</a>
-        </div>
+          ))}
+        </ul>
+
+        {/* Hire Me Button */}
+        <a
+          href="#contact"
+          className="hidden lg:inline-flex items-center px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-300"
+          style={{ backgroundColor: "#22c55e", color: "#0a0a0a" }}
+          onMouseEnter={(e) =>
+            ((e.currentTarget as HTMLAnchorElement).style.backgroundColor =
+              "#16a34a")
+          }
+          onMouseLeave={(e) =>
+            ((e.currentTarget as HTMLAnchorElement).style.backgroundColor =
+              "#22c55e")
+          }
+        >
+          Hire Me
+        </a>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          className="lg:hidden text-gray-400 hover:text-green-500 transition-colors duration-300"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          {menuOpen ? <HiX size={24} /> : <HiMenu size={24} />}
+        </button>
       </div>
-    </div>
+
+      {/* Mobile Dropdown */}
+      {menuOpen && (
+        <div
+          className="lg:hidden mt-4 mx-0 rounded-2xl p-5 flex flex-col gap-4"
+          style={{ backgroundColor: "#121212", border: "1px solid #2a2a2a" }}
+        >
+          {navLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              className="text-sm text-gray-400 hover:text-green-500 transition-colors duration-300"
+            >
+              {link.label}
+            </a>
+          ))}
+          <a
+            href="#contact"
+            onClick={() => setMenuOpen(false)}
+            className="mt-2 text-center py-2 rounded-xl text-sm font-semibold transition-all duration-300"
+            style={{ backgroundColor: "#22c55e", color: "#0a0a0a" }}
+          >
+            Hire Me
+          </a>
+        </div>
+      )}
+    </nav>
   );
 };
 
