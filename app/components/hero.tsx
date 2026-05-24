@@ -2,12 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 import { AiOutlineInstagram } from "react-icons/ai";
-import { FaLinkedinIn } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { HiArrowDown } from "react-icons/hi";
 
 const socialLinks = [
   { label: "Instagram", icon: <AiOutlineInstagram size={20} />, href: "#" },
   { label: "LinkedIn", icon: <FaLinkedinIn size={18} />, href: "#" },
+  { label: "Github", icon: <FaGithub size={18} />, href: "#" },
 ];
 
 const roles = [
@@ -119,7 +120,10 @@ const Hero = () => {
         </p>
 
         {/* Name */}
-        <h2 className="text-2xl md:text-3xl font-bold mb-4" style={{ color: "#ffffff" }}>
+        <h2
+          className="text-2xl md:text-3xl font-bold mb-4"
+          style={{ color: "#ffffff" }}
+        >
           Ramees M Siyad
         </h2>
 
@@ -172,7 +176,8 @@ const Hero = () => {
 
         {/* CTA Buttons */}
         <div className="flex flex-wrap gap-4 justify-center">
-          <button
+          <a
+            href="mailto:rameessiyad26@gmail.com"
             className="relative px-8 py-3 rounded-xl text-sm font-semibold overflow-hidden transition-all duration-300 group"
             style={{
               backgroundColor: "#22c55e",
@@ -180,20 +185,20 @@ const Hero = () => {
               boxShadow: "0 0 0 rgba(34,197,94,0)",
             }}
             onMouseEnter={(e) => {
-              const el = e.currentTarget as HTMLButtonElement;
+              const el = e.currentTarget as HTMLAnchorElement;
               el.style.backgroundColor = "#16a34a";
               el.style.transform = "translateY(-2px)";
               el.style.boxShadow = "0 8px 25px rgba(34,197,94,0.3)";
             }}
             onMouseLeave={(e) => {
-              const el = e.currentTarget as HTMLButtonElement;
+              const el = e.currentTarget as HTMLAnchorElement;
               el.style.backgroundColor = "#22c55e";
               el.style.transform = "translateY(0)";
               el.style.boxShadow = "0 0 0 rgba(34,197,94,0)";
             }}
           >
             Hire Me
-          </button>
+          </a>
 
           <button
             className="px-8 py-3 rounded-xl text-sm font-medium transition-all duration-300"

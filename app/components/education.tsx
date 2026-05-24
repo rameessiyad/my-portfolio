@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { MdWork } from "react-icons/md";
-import { Experiences as experiences } from "../data/experience";
+import { MdSchool } from "react-icons/md";
+import { Education as EducationData } from "../data/education";
 
-const Experience = () => {
+const Education = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -35,7 +35,7 @@ const Experience = () => {
           background:
             "radial-gradient(circle, rgba(34,197,94,0.07) 0%, transparent 70%)",
           top: "-80px",
-          right: "-120px",
+          left: "-120px",
           filter: "blur(40px)",
         }}
       />
@@ -48,28 +48,28 @@ const Experience = () => {
           background:
             "radial-gradient(circle, rgba(34,197,94,0.05) 0%, transparent 70%)",
           bottom: "-60px",
-          left: "-80px",
+          right: "-80px",
           filter: "blur(40px)",
         }}
       />
 
       {/* Corner brackets */}
       <span
-        className="absolute top-10 left-10 w-16 h-16 pointer-events-none"
+        className="absolute top-10 right-10 w-16 h-16 pointer-events-none"
         style={{
           borderTop: "1.5px solid #22c55e",
-          borderLeft: "1.5px solid #22c55e",
+          borderRight: "1.5px solid #22c55e",
           opacity: 0.25,
-          borderRadius: "4px 0 0 0",
+          borderRadius: "0 4px 0 0",
         }}
       />
       <span
-        className="absolute bottom-10 right-10 w-16 h-16 pointer-events-none"
+        className="absolute bottom-10 left-10 w-16 h-16 pointer-events-none"
         style={{
           borderBottom: "1.5px solid #22c55e",
-          borderRight: "1.5px solid #22c55e",
+          borderLeft: "1.5px solid #22c55e",
           opacity: 0.25,
-          borderRadius: "0 0 4px 0",
+          borderRadius: "0 0 0 4px",
         }}
       />
 
@@ -89,24 +89,25 @@ const Experience = () => {
             border: "1px solid rgba(34,197,94,0.2)",
           }}
         >
-          My Journey
+          Academic Background
         </span>
         <h2 className="text-white text-4xl font-bold mb-3 tracking-wide">
-          Experience
+          Education
         </h2>
         <p className="text-gray-400 text-sm mb-14 text-center max-w-lg">
-          My professional journey so far — building products and growing as a
-          developer.
+          The academic foundation behind my technical skills and professional
+          growth.
         </p>
       </div>
 
       {/* Timeline */}
       <div className="relative w-full max-w-2xl flex flex-col">
-        {/* Vertical line */}
+        {/* Static bg line */}
         <div
           className="absolute left-5 top-0 bottom-0 w-px"
           style={{ backgroundColor: "#2a2a2a" }}
         />
+
         {/* Animated fill line */}
         <div
           className="absolute left-5 top-0 w-px transition-all duration-1000"
@@ -118,9 +119,9 @@ const Experience = () => {
           }}
         />
 
-        {experiences.map((exp, index) => (
+        {EducationData.map((edu, index) => (
           <div
-            key={index}
+            key={edu.id}
             className="relative flex items-start gap-6 pb-10 last:pb-0 transition-all duration-700"
             style={{
               opacity: visible ? 1 : 0,
@@ -128,18 +129,15 @@ const Experience = () => {
               transitionDelay: `${index * 150 + 300}ms`,
             }}
           >
-            {/* Dot */}
+            {/* Icon dot */}
             <div
-              className="relative z-10 flex items-center justify-center w-10 h-10 rounded-full shrink-0 transition-all duration-300"
+              className="relative z-10 flex items-center justify-center w-10 h-10 rounded-full shrink-0"
               style={{
                 backgroundColor: "#1e1e1e",
                 border: "2px solid #22c55e",
-                boxShadow: exp.current
-                  ? "0 0 14px rgba(34,197,94,0.45)"
-                  : "none",
               }}
             >
-              <MdWork size={18} className="text-green-500" />
+              <MdSchool size={18} className="text-green-500" />
             </div>
 
             {/* Card */}
@@ -162,28 +160,21 @@ const Experience = () => {
                 el.style.boxShadow = "none";
               }}
             >
-              <div className="flex items-center justify-between flex-wrap gap-2 mb-1">
-                <span className="text-xs text-green-500 font-medium tracking-wide">
-                  {exp.period}
-                </span>
-                {exp.current && (
-                  <span
-                    className="flex items-center gap-1.5 text-xs font-medium px-2.5 py-0.5 rounded-full"
-                    style={{
-                      backgroundColor: "rgba(34,197,94,0.1)",
-                      color: "#22c55e",
-                      border: "1px solid rgba(34,197,94,0.2)",
-                    }}
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                    Current
-                  </span>
-                )}
-              </div>
-              <h3 className="text-white font-semibold text-lg">
-                {exp.company}
+              {/* Period badge */}
+              <span className="text-xs text-green-500 font-medium tracking-wide">
+                {edu.period}
+              </span>
+
+              {/* Course */}
+              <h3 className="text-white font-semibold text-base mt-1 leading-snug">
+                {edu.course}
               </h3>
-              <p className="text-gray-400 text-sm mt-1">{exp.role}</p>
+
+              {/* Institution */}
+              <p className="text-gray-300 text-sm mt-1">{edu.institution}</p>
+
+              {/* Location */}
+              <p className="text-gray-500 text-xs mt-1">{edu.location}</p>
             </div>
           </div>
         ))}
@@ -192,4 +183,4 @@ const Experience = () => {
   );
 };
 
-export default Experience;
+export default Education;
