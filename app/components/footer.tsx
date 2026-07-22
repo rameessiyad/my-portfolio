@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
 import React from "react";
-import { AiOutlineInstagram } from "react-icons/ai";
+import { AiOutlineGithub, AiOutlineInstagram } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
 
 const navLinks = ["Home", "Services", "Skills", "Experience", "Contact"];
@@ -34,31 +34,46 @@ const Footer = () => {
         {/* Social icons */}
         <div className="flex gap-3">
           {[
-            { icon: <AiOutlineInstagram size={20} />, label: "Instagram" },
-            { icon: <FaLinkedinIn size={18} />, label: "LinkedIn" },
+            {
+              icon: <AiOutlineInstagram size={20} />,
+              label: "Instagram",
+              href: "https://www.instagram.com/rameessiyad/",
+            },
+            {
+              icon: <FaLinkedinIn size={18} />,
+              label: "LinkedIn",
+              href: "https://www.linkedin.com/in/ramees-m-siyad",
+            },
+
+            {
+              icon: <AiOutlineGithub size={20} />,
+              label: "GitHub",
+              href: "https://github.com/rameessiyad",
+            },
           ].map((s) => (
-            <button
+            <a
               key={s.label}
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label={s.label}
-              className="flex items-center justify-center cursor-pointer w-9 h-9 rounded-full transition-all duration-300"
+              className="flex items-center justify-center w-9 h-9 rounded-full transition-all duration-300"
               style={{
                 backgroundColor: "#121212",
                 border: "1.5px solid #2a2a2a",
                 color: "#aaaaaa",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.borderColor =
-                  "#22c55e";
-                (e.currentTarget as HTMLButtonElement).style.color = "#22c55e";
+                e.currentTarget.style.borderColor = "#22c55e";
+                e.currentTarget.style.color = "#22c55e";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.borderColor =
-                  "#2a2a2a";
-                (e.currentTarget as HTMLButtonElement).style.color = "#aaaaaa";
+                e.currentTarget.style.borderColor = "#2a2a2a";
+                e.currentTarget.style.color = "#aaaaaa";
               }}
             >
               {s.icon}
-            </button>
+            </a>
           ))}
         </div>
 
