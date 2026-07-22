@@ -117,7 +117,6 @@ const Projects = () => {
               name={project.name}
               thumbnail={project.thumbnail}
               description={project.description}
-              type={project.type}
             />
           </div>
         ))}
