@@ -6,9 +6,9 @@ import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { HiArrowDown } from "react-icons/hi";
 
 const socialLinks = [
-  { label: "Instagram", icon: <AiOutlineInstagram size={20} />, href: "#" },
-  { label: "LinkedIn", icon: <FaLinkedinIn size={18} />, href: "#" },
-  { label: "Github", icon: <FaGithub size={18} />, href: "#" },
+  { label: "Instagram", icon: <AiOutlineInstagram size={20} />, href: "https://www.instagram.com/rameessiyad/" },
+  { label: "LinkedIn", icon: <FaLinkedinIn size={18} />, href: "https://www.linkedin.com/in/ramees-m-siyad" },
+  { label: "Github", icon: <FaGithub size={18} />, href: "https://github.com/rameessiyad" },
 ];
 
 const roles = [
